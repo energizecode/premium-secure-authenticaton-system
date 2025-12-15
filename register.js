@@ -25,7 +25,7 @@ const validateEmail = (email) => {
 };
 
 const validatePassword = (password) => {
-    return password.length >= 8;
+    return /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password);
 };
 
 const validatePasswordMatch = (password, confirmPassword) => {
@@ -94,7 +94,7 @@ passwordInput.addEventListener('blur', () => {
     if (!password) {
         showError(passwordError, passwordInput, 'Password is required');
     } else if (!validatePassword(password)) {
-        showError(passwordError, passwordInput, 'Password must be at least 8 characters');
+        showError(passwordError, passwordInput, 'Password must be at least 8 characters, contain only letters and numbers, and include both letters and numbers');
     } else {
         clearError(passwordError, passwordInput);
         // Check confirm password match
@@ -206,7 +206,7 @@ registerForm.addEventListener('submit', (e) => {
         showError(passwordError, passwordInput, 'Password is required');
         isValid = false;
     } else if (!validatePassword(password)) {
-        showError(passwordError, passwordInput, 'Password must be at least 8 characters');
+        showError(passwordError, passwordInput, 'Password must be at least 8 characters, contain only letters and numbers, and include both letters and numbers');
         isValid = false;
     } else {
         clearError(passwordError, passwordInput);
@@ -234,7 +234,7 @@ registerForm.addEventListener('submit', (e) => {
     if (isValid) {
         console.log('Form submitted:', { name, email, password });
         alert('Account created successfully!');
-        registerForm.reset();
+        window.location.href = 'login.html';
     }
 });
 
