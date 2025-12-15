@@ -233,8 +233,12 @@ registerForm.addEventListener('submit', (e) => {
     // If all validations pass
     if (isValid) {
         console.log('Form submitted:', { name, email, password });
-        alert('Account created successfully!');
-        window.location.href = 'login.html';
+        const successMessage = document.getElementById('successMessage');
+        successMessage.textContent = 'Account created successfully!';
+        successMessage.classList.add('show');
+        setTimeout(() => {
+            window.location.href = 'login.html';
+        }, 2000);
     }
 });
 

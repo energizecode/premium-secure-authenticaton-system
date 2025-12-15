@@ -111,8 +111,12 @@ loginForm.addEventListener('submit', (e) => {
     // If all validations pass
     if (email && validateEmail(email) && password && validatePassword(password)) {
         console.log('Form submitted:', { email, password });
-        alert('Login successful!');
-        window.location.href = 'dashboard.html';
+        const successMessage = document.getElementById('successMessage');
+        successMessage.textContent = 'Login successful!';
+        successMessage.classList.add('show');
+        setTimeout(() => {
+            window.location.href = 'dashboard.html';
+        }, 2000);
     }
 });
 
